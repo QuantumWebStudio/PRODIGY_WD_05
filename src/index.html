@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prodigy WD 05</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gradient-to-r from-gray-100 to-gray-300">
+    <!--This Header Contains the Heading -->
+    <header class="py-5">
+      <h1 class="text-center text-3xl font-semibold font-[Inter]">
+        Weather Application
+      </h1>
+    </header>
+    <!--This Section Contails the form where the user need to enter the city name and wait for a while -->
+    <section
+      class="w-full min-h-[200px] my-5 flex flex-col justify-start items-center"
+    >
+      <div
+        class="w-full sm:w-1/2 flex flex-col items-center justify-center gap-3"
+      >
+        <label class="p-3 text-left text-xl font-semibold font-[Inter]"
+          >Enter the City Name</label
+        >
+        <input
+          type="text"
+          id="city"
+          placeholder="Enter the City Name..."
+          class="rounded-md font-[Poppins] border-2 p-1 border-gray-500"
+        />
+        <button
+          onclick="sendDetails()"
+          class="text-center border rounded-md py-1 px-2 bg-black text-white hover:bg-blue-500"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </section>
+    <!--This Section Contails the div that show the error message -->
+    <section
+      class="w-full hidden my-5 flex-col justify-start items-center"
+      id="errorSection"
+    >
+      <div
+        class="text-center text-red-500 text-lg font-[Inter] w-full md:w-[50%] flex flex-col itbetween justify-center gap-3"
+      >
+        <p class="errorMessage">Please enter a valid city name.</p>
+      </div>
+    </section>
+
+    <!--This Section contains the weather info after an user enter's the city name -->
+    <section
+      id="displayInfo"
+      class="w-full px-2 min-h-[200px] my-5 flex lg:text-xl flex-col justify-start items-center"
+    >
+      <h1
+        class="text-center text-lg md:text-xl font-semibold font-[Inter] my-2"
+      >
+        <span class="text-red-500">Weather</span> Details of the above
+        <span class="text-red-500">City</span>:
+      </h1>
+      <div
+        class="w-full lg:w-[50%] flex flex-col items-start justify-center gap-3"
+      >
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">City:</label>
+          <span
+            id="displayCity"
+            class="font-semibold font-[Poppins] rounded-md pl-2"
+          ></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Country:</label>
+          <span id="displayCountry" class="font-semibold font-[Poppins]"></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Region:</label>
+          <span id="displayRegion" class="font-semibold font-[Poppins]"></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Day:</label>
+          <span id="displayDay" class="font-semibold font-[Poppins]"></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Date & Time:</label>
+          <span
+            id="displayDateTime"
+            class="font-semibold font-[Poppins]"
+          ></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Celsius(°C):</label>
+          <span id="displayTempC" class="font-semibold font-[Poppins]"></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Fahrenheit (°F):</label>
+          <span id="displayTempF" class="font-semibold font-[Poppins]"></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Wind Speed:</label>
+          <span
+            id="displayWindSpeend"
+            class="font-semibold font-[Poppins]"
+          ></span>
+        </div>
+        <div
+          class="w-full flex justify-start md:justify-between items-center md:px-[100px] lg:px-0"
+        >
+          <label class="font-semibold font-[Inter]">Humidity:</label>
+          <span
+            id="displayHumidity"
+            class="font-semibold font-[Poppins]"
+          ></span>
+        </div>
+      </div>
+    </section>
+    <!-- Contains the description of how to use the App -->
+    <section class="w-full h-[500px] flex flex-col justify-evenly items-center">
+      <div
+        class="w-full sm:w-1/2 h-full flex flex-col items-center p-2 justify-center text-lg gap-3"
+      >
+        <h1 class="text-center text-xl font-semibold font-[Inter]">
+          How It Works?
+        </h1>
+        <p
+          class="text-left sm:text-center text-blue-500 font-[Poppins] leading-normal"
+        >
+          This Weather Application uses API calls to fetch the weather data. It
+          displays the current weather conditions along with the temperature,
+          humidity, wind speed and other essential weather details.
+        </p>
+        <p class="text-center text-xl font-semibold font-[Inter]">
+          To use this App
+        </p>
+        <ul class="list-decimal list-inside font-[Poppins]">
+          <li>Enter the city name in the search bar above.</li>
+          <li>Click the Search button to fetch the weather data.</li>
+          <li>
+            Wait for a few seconds to get the data displayed on the screen.
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!-- Contains the copyright and contact information and github links -->
+    <footer class="py-3 h-[50px] text-center">
+      <a href="https://github.com/QuantumWebStudio/PRODIGY_WD_05.git">
+        <i class="fa-brands fa-github fa-2xl"></i>
+      </a>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>
