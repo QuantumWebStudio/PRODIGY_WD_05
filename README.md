@@ -7,15 +7,15 @@ In this project i have used
 
 <ul>
     <li>
-        TailwindCSS as a CSS Framework.
+        <a href="https://tailwindcss.com/docs/installation">TailwindCSS as a CSS Framework.</a>
     </li>
     <li>
-        FontAwesome for Icons.
+        <a href="https://fontawesome.com/"> FontAwesome for Icons.</a>
     </li>
     <li>
-        Weather API for getting the weather Information
+        <a href= "https://www.weatherapi.com/">Weather API for getting the weather Information</a>
     </li>
     <li>
-        Google Fonts for Fonts
+       <a href="https://fonts.google.com/"> Google Fonts for Fonts </a>
     </li>
 </ul>
