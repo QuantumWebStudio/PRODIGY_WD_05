@@ -1,9 +1,7 @@
 const errorSection = document.getElementById("errorSection");
 const displayInfo = document.getElementById("displayInfo");
 const sendDetails = () => {
-  console.log("WORKING!!");
   const cityName = document.getElementById("city").value;
-  console.log(cityName, "FROM CITYNAME");
   getWeatherDetails(cityName);
 };
 
@@ -15,10 +13,9 @@ const getWeatherDetails = async (cityName) => {
     const weatherData = await response.json();
     if (response.status === 400) {
       errorSection.classList.remove("hidden");
+      errorSection.classList.add("flex");
       displayInfo.classList.remove("flex");
       displayInfo.classList.add("hidden");
-      errorSection.classList.add("flex");
-      throw new Error("City not found");
     }
     if (response.status === 200) {
       displayWeatherDetails(weatherData);
@@ -33,27 +30,16 @@ const displayWeatherDetails = (weatherData) => {
   errorSection.classList.add("hidden");
   displayInfo.classList.remove("hidden");
   displayInfo.classList.add("flex");
-  console.log(weatherData);
   const { temp_c, temp_f, humidity, is_day, wind_kph } = weatherData.current;
   const { country, localtime, name, region } = weatherData.location;
   const displayCity = (document.getElementById("displayCity").innerText = name);
-  const displayCountry = (document.getElementById("displayCountry").innerText =
-    country);
-  const displayRegion = (document.getElementById("displayRegion").innerText =
-    region);
-  const displayDateTime = (document.getElementById("displayDateTime").innerText =
-    localtime);
-  const displayTempC = (document.getElementById(
-    "displayTempC"
-  ).innerText = `${temp_c}°C`);
-  const displayWindSpeend = (document.getElementById(
-    "displayWindSpeend"
-  ).innerText = `${wind_kph}kmph`);
-  const displayTempF = (document.getElementById(
-    "displayTempF"
-  ).innerText = `${temp_f}°F`);
-  const displayHumidity = (document.getElementById("displayHumidity").innerText =
-    humidity);
+  const displayCountry = (document.getElementById("displayCountry").innerText = country);
+  const displayRegion = (document.getElementById("displayRegion").innerText = region);
+  const displayDateTime = (document.getElementById("displayDateTime").innerText = localtime);
+  const displayTempC = (document.getElementById("displayTempC").innerText = `${temp_c}°C`);
+  const displayWindSpeend = (document.getElementById("displayWindSpeend").innerText = `${wind_kph}kmph`);
+  const displayTempF = (document.getElementById("displayTempF").innerText = `${temp_f}°F`);
+  const displayHumidity = (document.getElementById("displayHumidity").innerText = humidity);
   const displayDay = document.getElementById("displayDay");
   switch (is_day) {
     case 0:
